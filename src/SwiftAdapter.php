@@ -2,8 +2,8 @@
 
 namespace Xtrcode\Filesystem;
 
-use OpenStack\ObjectStore\v1\Models\Container;
 use Nimbusoft\Flysystem\OpenStack\SwiftAdapter as BaseAdapter;
+use OpenStack\ObjectStore\v1\Models\Container;
 
 class SwiftAdapter extends BaseAdapter
 {
@@ -17,8 +17,8 @@ class SwiftAdapter extends BaseAdapter
     /**
      * Constructor
      *
-     * @param Container $container
-     * @param string    $prefix
+     * @param  Container  $container
+     * @param  string  $prefix
      */
     public function __construct(Container $container, $prefix = null, $url = null)
     {

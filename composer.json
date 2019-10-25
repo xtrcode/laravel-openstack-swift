@@ -1,31 +1,32 @@
 {
-    "name": "xtrcode/laravel-ovh-openstack-swift",
-    "description": "OVH Object & Block Storage driver for Laravel/Lumen for Laravel >=5.*",
-    "type": "library",
-    "version": "2.0.2",
-    "require": {
-        "mzur/flysystem-openstack-swift": "^1.0",
-        "biigle/laravel-cached-openstack": "^1.0",
-        "illuminate/support": "^5.1|^6.0",
-        "illuminate/filesystem": "^5.1|^6.0"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "xtrcode",
-            "email": "spam@xtracode.ws"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Xtrcode\\Filesystem\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Xtrcode\\Filesystem\\SwiftServiceProvider"
-            ]
-        }
+  "name": "xtrcode/laravel-ovh-openstack-swift",
+  "description": "OVH Object & Block Storage driver for Laravel/Lumen for Laravel >=5.*",
+  "type": "library",
+  "version": "v2.0.4",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "xtrcode",
+      "email": "spam@xtracode.ws"
     }
+  ],
+  "require": {
+    "php-opencloud/openstack": "^3.0",
+    "league/flysystem": "^1.0",
+    "mzur/flysystem-openstack-swift": "^1.0",
+    "illuminate/support": "^5.1|^6.0",
+    "illuminate/filesystem": "^5.1|^6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Xtrcode\\Filesystem\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Xtrcode\\Filesystem\\SwiftServiceProvider"
+      ]
+    }
+  }
 }

@@ -2,11 +2,15 @@
 
 namespace Xtrcode\Filesystem;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
 use Illuminate\Support\Arr;
+use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Config;
 use League\Flysystem\Filesystem;
-use Openstack\OpenStack;
-use Illuminate\Support\ServiceProvider;
+use OpenStack\Common\Transport\Utils as TransportUtils;
+use OpenStack\Identity\v2\Service;
+use OpenStack\OpenStack;
 
 class SwiftServiceProvider extends ServiceProvider
 {
@@ -19,7 +23,7 @@ class SwiftServiceProvider extends ServiceProvider
     {
         $this->app['filesystem']->extend('swift', function ($app, $config) {
             $options = $this->getOsOptions($config);
-             $container = (new OpenStack($options))
+            $container = (new OpenStack($options))
                 ->objectStoreV1()
                 ->getContainer($config['container']);
 
@@ -29,6 +33,7 @@ class SwiftServiceProvider extends ServiceProvider
 
             return new Filesystem($adapter, $this->getFlyConfig($config));
         });
+    }
 
     /**
      * Register the service provider.
@@ -43,7 +48,7 @@ class SwiftServiceProvider extends ServiceProvider
     /**
      * Get the OpenStack options.
      *
-     * @param array $config
+     * @param  array  $config
      *
      * @return array
      */
@@ -77,7 +82,7 @@ class SwiftServiceProvider extends ServiceProvider
     /**
      * Create the Flysystem configuration.
      *
-     * @param array $config
+     * @param  array  $config
      *
      * @return Config
      */
