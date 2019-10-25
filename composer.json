@@ -1,6 +1,6 @@
 {
-    "name": "mzur/laravel-openstack-swift",
-    "description": "OpenStack Swift storage driver for Laravel 5.",
+    "name": "xtrcode/laravel-ovh-openstack-swift",
+    "description": "OVH Object & Block Storage driver for Laravel/Lumen for Laravel >=5.",
     "type": "library",
     "require": {
         "mzur/flysystem-openstack-swift": "^1.0",
@@ -11,19 +11,19 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Martin Zurowietz",
-            "email": "martin@zurowietz.de"
+            "name": "xtrcode",
+            "email": "spam [at] xtracode.ws"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Mzur\\Filesystem\\": "src/"
+            "Xtrcode\\Filesystem\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Mzur\\Filesystem\\SwiftServiceProvider"
+                "Xtrcode\\Filesystem\\SwiftServiceProvider"
             ]
         }
     }
