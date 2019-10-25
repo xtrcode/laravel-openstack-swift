@@ -1,6 +1,6 @@
 <?php
 
-namespace Mzur\Filesystem;
+namespace Xtrcode\Filesystem;
 
 use Illuminate\Support\Arr;
 use League\Flysystem\Config;
