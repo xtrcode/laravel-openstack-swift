@@ -5,7 +5,7 @@ namespace Mzur\Filesystem;
 use Illuminate\Support\Arr;
 use League\Flysystem\Config;
 use League\Flysystem\Filesystem;
-use Biigle\CachedOpenStack\OpenStack;
+use Openstack\OpenStack;
 use Illuminate\Support\ServiceProvider;
 
 class SwiftServiceProvider extends ServiceProvider
@@ -17,9 +17,9 @@ class SwiftServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['filesystem']->extend('swift', function($app, $config) {
+        $this->app['filesystem']->extend('swift', function ($app, $config) {
             $options = $this->getOsOptions($config);
-            $container = (new OpenStack($app['cache'], $options))
+             $container = (new OpenStack($options))
                 ->objectStoreV1()
                 ->getContainer($config['container']);
 
@@ -29,7 +29,6 @@ class SwiftServiceProvider extends ServiceProvider
 
             return new Filesystem($adapter, $this->getFlyConfig($config));
         });
-    }
 
     /**
      * Register the service provider.
@@ -50,18 +49,22 @@ class SwiftServiceProvider extends ServiceProvider
      */
     protected function getOsOptions($config)
     {
+        $authUrl = $config['authUrl'];
+        $httpClient = new Client([
+            'base_uri' => TransportUtils::normalizeUrl($authUrl),
+            'handler'  => HandlerStack::create(),
+        ]);
         $options = [
-            'authUrl' => $config['authUrl'],
-            'region' => $config['region'],
-            'user' => [
-                'name' => $config['user'],
-                'password' => $config['password'],
-                'domain' => ['name' => $config['domain']],
-            ],
-            'debugLog' => Arr::get($config, 'debugLog', false),
-            'logger' => Arr::get($config, 'logger', null),
+            'authUrl'          => $authUrl,
+            'region'           => $config['region'],
+            'username'         => $config['user'],
+            'password'         => $config['password'],
+            'tenantName'       => $config['tenantName'],
+            'identityService'  => Service::factory($httpClient),
+            'debugLog'         => Arr::get($config, 'debugLog', false),
+            'logger'           => Arr::get($config, 'logger', null),
             'messageFormatter' => Arr::get($config, 'messageFormatter', null),
-            'requestOptions' => Arr::get($config, 'requestOptions', []),
+            'requestOptions'   => Arr::get($config, 'requestOptions', []),
         ];
 
         if (array_key_exists('projectId', $config)) {
