@@ -1,6 +1,6 @@
 <?php
 
-namespace Mzur\Filesystem;
+namespace Xtrcode\Filesystem;
 
 use OpenStack\ObjectStore\v1\Models\Container;
 use Nimbusoft\Flysystem\OpenStack\SwiftAdapter as BaseAdapter;
