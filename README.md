@@ -7,7 +7,7 @@ OVH Object & Block Storage driver for Laravel/Lumen.
 Require the package with Composer:
 
 ```
-composer require mzur/laravel-openstack-swift
+composer require xtrcode/laravel-ovh-openstack-swift
 ```
 
 ### Laravel
@@ -15,14 +15,14 @@ composer require mzur/laravel-openstack-swift
 For Laravel 5.4 and lower, add the service provider to `config/app.php`:
 
 ```php
-Mzur\Filesystem\SwiftServiceProvider::class,
+Xtrcode\Filesystem\SwiftServiceProvider::class,
 ```
 
 ### Lumen
 
 Add the service provider to `bootstrap/app.php`:
 ```php
-$app->register(Mzur\Filesystem\SwiftServiceProvider::class);
+$app->register(Xtrcode\Filesystem\SwiftServiceProvider::class);
 ```
 
 ## Configuration
