@@ -1,6 +1,6 @@
 {
     "name": "xtrcode/laravel-ovh-openstack-swift",
-    "description": "OVH Object & Block Storage driver for Laravel/Lumen for Laravel >=5.",
+    "description": "OVH Object & Block Storage driver for Laravel/Lumen for Laravel >=5.*",
     "type": "library",
     "require": {
         "mzur/flysystem-openstack-swift": "^1.0",
